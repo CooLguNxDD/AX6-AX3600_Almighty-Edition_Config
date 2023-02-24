@@ -8,10 +8,11 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: AX6 Almighty Edition
+name: AX6_Almighty_Edition
 
 on:
   repository_dispatch:
+  push:
   workflow_dispatch:
     inputs:
       ssh:
@@ -165,6 +166,8 @@ jobs:
         echo "::set-output name=status::success"
 
     - name: Upload firmware to release
+      permissions:
+        contents: write
       uses: softprops/action-gh-release@v1
       if: steps.tag.outputs.status == 'success' && !cancelled()
       env:

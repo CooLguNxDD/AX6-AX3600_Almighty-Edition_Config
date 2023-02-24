@@ -20,6 +20,9 @@ on:
         required: false
         default: 'false'
 
+permissions:
+  contents: write
+
 env:
   REPO_URL: https://github.com/xiangfeidexiaohuo/lede
   REPO_BRANCH: master
@@ -37,9 +40,6 @@ env:
 jobs:
   build:
     runs-on: ubuntu-20.04
-  permissions:
-   contents: write
-   
     steps:
     - name: Checkout
       uses: actions/checkout@main
